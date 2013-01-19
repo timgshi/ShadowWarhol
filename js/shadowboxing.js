@@ -67,6 +67,7 @@ $(document).ready(function() {
 
         var img = canvas.toDataURL('image/jpeg');
         console.log(img);
+        window.open(img);
     });
 });
 
