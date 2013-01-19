@@ -234,8 +234,9 @@ function renderShadow() {
     return;
   }
   
-  pixelData = getShadowData();
+ 
   for (var i = 0; i < shadowContexts.length; i++) {
+        pixelData = getShadowData(i);
         var context = shadowContexts[i];
         context.putImageData(pixelData, 0, 0);
   };
@@ -247,7 +248,7 @@ function renderShadow() {
  * and white pixels for the background
  */
 
-function getShadowData() {
+function getShadowData(canvasNum) {
     var pixelData = getCameraData();
 
     // Each pixel gets four array indices: [r, g, b, alpha]
@@ -260,13 +261,60 @@ function getShadowData() {
         var gBackground = background.data[i+1];
         var bBackground = background.data[i+2];
         		
-        var distance = pixelDistance(rCurrent, gCurrent, bCurrent, rBackground, gBackground, bBackground);        
+        var distance = pixelDistance(rCurrent, gCurrent, bCurrent, rBackground, gBackground, bBackground); 
+
+        var backgroundColor = [];
+        var foregroundColor = [];
+
+        switch(canvasNum) {
+            case 0:
+                backgroundColor[0] = 248;
+                backgroundColor[1] = 178;
+                backgroundColor[2] = 78;
+                backgroundColor[3] = 1;
+                foregroundColor[0] = 126;
+                foregroundColor[1] = 50;
+                foregroundColor[2] = 124;
+                foregroundColor[3] = 1;
+                break;
+            case 1:
+                backgroundColor[0] = 116;
+                backgroundColor[1] = 207;
+                backgroundColor[2] = 70;
+                backgroundColor[3] = 1;
+                foregroundColor[0] = 11;
+                foregroundColor[1] = 50;
+                foregroundColor[2] = 110;
+                foregroundColor[3] = 1;
+                break;
+            case 2:
+                backgroundColor[0] = 30;
+                backgroundColor[1] = 176;
+                backgroundColor[2] = 225;
+                backgroundColor[3] = 1;
+                foregroundColor[0] = 235;
+                foregroundColor[1] = 51;
+                foregroundColor[2] = 61;
+                foregroundColor[3] = 1;
+                break;
+            case 3:
+                backgroundColor[0] = 247;
+                backgroundColor[1] = 215;
+                backgroundColor[2] = 19;
+                backgroundColor[3] = 1;
+                foregroundColor[0] = 28;
+                foregroundColor[1] = 129;
+                foregroundColor[2] = 271;
+                foregroundColor[3] = 1;
+                break;
+
+        }       
         
         if (distance >= SHADOW_THRESHOLD) {
             // foreground, show shadow
-            pixelData.data[i] = 0;
-            pixelData.data[i+1] = 0;
-            pixelData.data[i+2] = 0;
+            pixelData.data[i] = foregroundColor[0];
+            pixelData.data[i+1] = foregroundColor[1];
+            pixelData.data[i+2] = foregroundColor[2];
         } else {
             // background
             
@@ -274,10 +322,9 @@ function getShadowData() {
             updateBackground(i, rCurrent, gCurrent, bCurrent, rBackground, gBackground, bBackground);
             
             // now set the background color
-            pixelData.data[i] = 255;
-            pixelData.data[i+1] = 255;
-            pixelData.data[i+2] = 255;
-            pixelData.data[i+3] = 0;
+            pixelData.data[i] = backgroundColor[0];
+            pixelData.data[i+1] = backgroundColor[1];
+            pixelData.data[i+2] = backgroundColor[2];
         }        
     }
     
