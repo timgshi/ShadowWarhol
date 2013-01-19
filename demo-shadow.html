@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html>
     <head>
-        <script type='text/javascript' src='http://code.jquery.com/jquery-latest.min.js'></script>
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
         <script type='text/javascript' src='js/stackblur.js'></script>   
 		<script type="text/javascript" src="js/kinect.js"></script>
         <script type="text/javascript" src="js/shadowboxing.js"></script>
@@ -9,6 +9,11 @@
     </head>
 
     <body>
+        <form action="email.php" method="post">
+            Name: <input type="text" name="fname">
+            Age: <input type="text" name="age">
+        <input type="submit">
+        </form>
         <div id="capture">
             <div id="top-row">
                 <div id="top-left"></div>
@@ -18,10 +23,62 @@
                 <div id="bottom-left"></div>
                 <div id="bottom-right"></div>
             <button id="background">Capture Background</button>
+<<<<<<< HEAD
             <form action="postcard-page.php" id="take-photo" method="post">
                 <input type="hidden" id="image-data" name="image-data" value=""/>
                 <input type="submit" value="Take Photo"/>
             </form>
+=======
+            <button id="take-photo">Take Photo</button>
+            <script type="text/javascript">
+                $('#take-photo').click(function() {
+                    capturePhoto();
+                });
+
+                $('#container').load('https://api.postmarkapp.com');
+
+                function capturePhoto() {
+                    var canvas = document.createElement('canvas');
+                    canvas.setAttribute('width', 2*640);
+                    canvas.setAttribute('height', 2*480);
+                    var context = canvas.getContext('2d');
+
+                    context.drawImage(document.getElementById('shadowCanvas0'), 0, 0, 640, 480);
+                    context.drawImage(document.getElementById('shadowCanvas1'), 640, 0, 640, 480);
+                    context.drawImage(document.getElementById('shadowCanvas2'), 0, 480, 640, 480);
+                    context.drawImage(document.getElementById('shadowCanvas3'), 640, 480, 640, 480);
+
+                    var img = canvas.toDataURL('image/jpeg');
+                    console.log(img);
+                    sendEmail(img);
+                }
+
+                function sendEmail(imageURL) {
+                    var sendData = {
+                      "From" : "timshi@stanford.edu",
+                      "To" : "timgshi@gmail.com",
+                      "Subject" : "Test!",
+                      "HtmlBody" : "hi",
+                      "TextBody" : "Hello",
+                      "ReplyTo" : "timshi@stanford.edu"
+                    }
+                    $.ajax({
+                        url: 'https://api.postmarkapp.com/email',
+                        type: 'POST',
+                        dataType: 'json',
+                        data: JSON.stringify(sendData),
+                        success: function() { alert('hello!'); },
+                        error: function() { alert('boo!'); },
+                        beforeSend: setHeader
+                    });
+                    function setHeader(xhr) {
+                        xhr.setRequestHeader('X-Postmark-Server-Token', '8e1b879a-1100-45aa-9fd6-36463856455f');
+                        xhr.setRequestHeader('Content-Type', 'application/json');
+                        xhr.setRequestHeader('Accept', 'application/json');
+                    }
+                }
+            </script>
+>>>>>>> 69a29e3129bd0198b74471b85dd67d7fc75bfc98
             </div>
         </div>    
     </body>
