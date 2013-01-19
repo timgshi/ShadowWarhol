@@ -54,21 +54,51 @@ $(document).ready(function() {
             renderShadow();
         }
     });
-    $('#take-photo').click(function() {
-        var canvas = document.createElement('canvas');
-        canvas.setAttribute('width', 2*640);
-        canvas.setAttribute('height', 2*480);
-        var context = canvas.getContext('2d');
-
-        context.drawImage(document.getElementById('shadowCanvas0'), 0, 0, 640, 480);
-        context.drawImage(document.getElementById('shadowCanvas1'), 640, 0, 640, 480);
-        context.drawImage(document.getElementById('shadowCanvas2'), 0, 480, 640, 480);
-        context.drawImage(document.getElementById('shadowCanvas3'), 640, 480, 640, 480);
-
-        var img = canvas.toDataURL('image/jpeg');
-        console.log(img);
-    });
+    // $('#take-photo').click(function() {
+    //     capturePhoto();
+    // });
 });
+
+// function capturePhoto() {
+//     var canvas = document.createElement('canvas');
+//     canvas.setAttribute('width', 2*640);
+//     canvas.setAttribute('height', 2*480);
+//     var context = canvas.getContext('2d');
+
+//     context.drawImage(document.getElementById('shadowCanvas0'), 0, 0, 640, 480);
+//     context.drawImage(document.getElementById('shadowCanvas1'), 640, 0, 640, 480);
+//     context.drawImage(document.getElementById('shadowCanvas2'), 0, 480, 640, 480);
+//     context.drawImage(document.getElementById('shadowCanvas3'), 640, 480, 640, 480);
+
+//     var img = canvas.toDataURL('image/jpeg');
+//     console.log(img);
+//     sendEmail(img);
+// }
+
+// function sendEmail(imageURL) {
+//     var sendData = {
+//       "From" : "timshi@stanford.edu",
+//       "To" : "timgshi@gmail.com",
+//       "Subject" : "Test!",
+//       "HtmlBody" : "<img src=" + imageURL + ">",
+//       "TextBody" : "Hello",
+//       "ReplyTo" : "timshi@stanford.edu"
+//     }
+//     $.ajax({
+//         url: 'https://api.postmarkapp.com/email',
+//         type: 'POST',
+//         dataType: 'json',
+//         data: JSON.stringify(sendData),
+//         success: function() { alert('hello!'); },
+//         error: function() { alert('boo!'); },
+//         beforeSend: setHeader
+//     });
+//     function setHeader(xhr) {
+//         xhr.setRequestHeader('X-Postmark-Server-Token', '8e1b879a-1100-45aa-9fd6-36463856455f');
+//         xhr.setRequestHeader('Content-Type', 'application/json');
+//         xhr.setRequestHeader('Accept', 'application/json');
+//     }
+// }
 
 /*
  * Creates the video and canvas elements
