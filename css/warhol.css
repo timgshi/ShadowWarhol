@@ -12,11 +12,12 @@
 	clear: both;
 }
 #top-left, #bottom-left {
-	width: 50%;
+	width: 35%;
 	float: left;
 }
 #top-right, #bottom-right {
-	width: 50%;
+	width: 35%;
 	float: right;
+	padding-right: 30%;
 }
 

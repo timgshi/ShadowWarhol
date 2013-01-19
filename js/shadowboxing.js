@@ -20,7 +20,7 @@ SHOW_SHADOW = true;
 var INPUT = "webcam"; 
 // A difference of >= SHADOW_THRESHOLD across RGB space from the background
 // frame is marked as foreground
-var SHADOW_THRESHOLD = 10;
+var SHADOW_THRESHOLD = 8;
 // Between 0 and 1: how much memory we retain of previous frames.
 // In other words, how much we let the background adapt over time to more recent frames
 var BACKGROUND_ALPHA = 0.05;
@@ -81,8 +81,8 @@ function initializeDOMElements() {
     for (var i = 0; i < 4; i++) {
         var canvas = document.createElement('canvas');
         canvas.setAttribute('id', 'shadowCanvas' + i);
-        //canvas.setAttribute('width', 320);
-        //canvas.setAttribute('height', 240);
+        canvas.setAttribute('width', 640);
+        canvas.setAttribute('height', 480);
         canvas.setAttribute('class', 'shadowCanvas');
         // canvas.setAttribute('position', 'absolute');
         switch(i) {
