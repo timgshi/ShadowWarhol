@@ -81,20 +81,21 @@ function initializeDOMElements() {
     for (var i = 0; i < 4; i++) {
         var canvas = document.createElement('canvas');
         canvas.setAttribute('id', 'shadowCanvas' + i);
-        canvas.setAttribute('width', 640);
-        canvas.setAttribute('height', 480);
+        canvas.setAttribute('width', 320);
+        canvas.setAttribute('height', 240);
         canvas.setAttribute('position', 'absolute');
         switch(i) {
+            case 0: 
+                canvas.style.float = 'left';
+                break;
             case 1:
-                canvas.setAttribute('left', 640);
+                canvas.style.float = 'right';
                 break;
             case 2:
-                canvas.setAttribute('top', 480);
+                canvas.style.float = 'left';
                 break;
-
             case 3:
-                canvas.setAttribute('left', 640);
-                canvas.setAttribute('top', 480);
+                canvas.style.float = 'right';
                 break;
         }
         canvas.style.display = SHOW_SHADOW ? 'block' : 'none';
