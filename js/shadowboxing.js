@@ -54,7 +54,8 @@ $(document).ready(function() {
             renderShadow();
         }
     });
-    $('#take-photo').click(function() {
+
+    $('#take-photo').submit(function() {
         var canvas = document.createElement('canvas');
         canvas.setAttribute('width', 2*640);
         canvas.setAttribute('height', 2*480);
@@ -67,8 +68,10 @@ $(document).ready(function() {
 
         var img = canvas.toDataURL('image/jpeg');
         console.log(img);
-        window.open(img);
-    });
+
+        $('#image-data').val(img);
+        return true; 
+    })
 });
 
 /*

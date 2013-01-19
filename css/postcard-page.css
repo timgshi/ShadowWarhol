@@ -1,0 +1,50 @@
+#PC-form {
+	width:300px;
+	position: fixed;
+  	right: 200px;
+  	top: 50px;
+  	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+input {
+  border:1px solid #ccc;
+  font-size:15px;
+  width:300px;
+  min-height:30px;
+  display:block;
+  margin-bottom:15px;
+  margin-top:5px;
+
+  -webkit-border-radius:5px;
+  -moz-border-radius:5px;
+  -o-border-radius:5px;
+  -ms-border-radius:5px;
+  border-radius:5px;
+}
+
+input[type=submit] {
+  background:rgb(44, 109, 105);
+  color:white;
+  padding:10px;
+}
+
+textarea {
+	border:1px solid #ccc;
+	font-size:15px;
+	width:300px;
+	min-height:30px;
+	display:block;
+	margin-bottom:15px;
+	margin-top:5px;
+
+	-webkit-border-radius:5px;
+	-moz-border-radius:5px;
+	-o-border-radius:5px;
+	-ms-border-radius:5px;
+	border-radius:5px;
+}
+
+#message{
+	min-height: 100px;
+	width: 300px;
+}
