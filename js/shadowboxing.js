@@ -54,6 +54,20 @@ $(document).ready(function() {
             renderShadow();
         }
     });
+    $('#take-photo').click(function() {
+        var canvas = document.createElement('canvas');
+        canvas.setAttribute('width', 2*640);
+        canvas.setAttribute('height', 2*480);
+        var context = canvas.getContext('2d');
+
+        context.drawImage(document.getElementById('shadowCanvas0'), 0, 0, 640, 480);
+        context.drawImage(document.getElementById('shadowCanvas1'), 640, 0, 640, 480);
+        context.drawImage(document.getElementById('shadowCanvas2'), 0, 480, 640, 480);
+        context.drawImage(document.getElementById('shadowCanvas3'), 640, 480, 640, 480);
+
+        var img = canvas.toDataURL('image/jpeg');
+        console.log(img);
+    });
 });
 
 /*
