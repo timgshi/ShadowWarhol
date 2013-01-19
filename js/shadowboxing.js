@@ -34,6 +34,7 @@ var STACK_BLUR_RADIUS = 10;
  */
 var mediaStream, video, rawCanvas, rawContext, shadowCanvas, shadowContext, background = null;
 var kinect, kinectSocket = null;
+var shadowCanvases, shadowContexts = null;
 
 var started = false;
 
@@ -72,15 +73,42 @@ function initializeDOMElements() {
     rawContext = rawCanvas.getContext('2d');
     // mirror horizontally, so it acts like a reflection
     rawContext.translate(rawCanvas.width, 0);
-    rawContext.scale(-1,1);    
+    rawContext.scale(-1,1);
+
+    shadowContexts = [];
+    shadowCanvases = [];
     
-    shadowCanvas = document.createElement('canvas');
-    shadowCanvas.setAttribute('id', 'shadowCanvas');
-    shadowCanvas.setAttribute('width', 640);
-    shadowCanvas.setAttribute('height', 480);
-    shadowCanvas.style.display = SHOW_SHADOW ? 'block' : 'none';
-    document.getElementById('capture').appendChild(shadowCanvas);
-    shadowContext = shadowCanvas.getContext('2d');    
+    for (var i = 0; i < 4; i++) {
+        var canvas = document.createElement('canvas');
+        canvas.setAttribute('id', 'shadowCanvas' + i);
+        canvas.setAttribute('width', 640);
+        canvas.setAttribute('height', 480);
+        canvas.setAttribute('position', 'absolute');
+        switch(i) {
+            case 1:
+                canvas.setAttribute('left', 640);
+                break;
+            case 2:
+                canvas.setAttribute('top', 480);
+                break;
+
+            case 3:
+                canvas.setAttribute('left', 640);
+                canvas.setAttribute('top', 480);
+                break;
+        }
+        canvas.style.display = SHOW_SHADOW ? 'block' : 'none';
+        document.getElementById('capture').appendChild(canvas);
+        shadowCanvases.push(canvas);
+        shadowContexts.push(canvas.getContext('2d'));  
+    };
+    // shadowCanvas = document.createElement('canvas');
+    // shadowCanvas.setAttribute('id', 'shadowCanvas');
+    // shadowCanvas.setAttribute('width', 640);
+    // shadowCanvas.setAttribute('height', 480);
+    // shadowCanvas.style.display = SHOW_SHADOW ? 'block' : 'none';
+    // document.getElementById('capture').appendChild(shadowCanvas);
+    // shadowContext = shadowCanvas.getContext('2d');  
 }
 
 
@@ -206,7 +234,10 @@ function renderShadow() {
   }
   
   pixelData = getShadowData();
-  shadowContext.putImageData(pixelData, 0, 0);
+  for (var i = 0; i < shadowContexts.length; i++) {
+        var context = shadowContexts[i];
+        context.putImageData(pixelData, 0, 0);
+  };
   setTimeout(renderShadow, 0);
 }
 
