@@ -10,9 +10,9 @@
     </head>
 
     <body>
-        <img src="<?php echo $_POST["image-data"]; ?>"/>
+        <img src="<?php echo $_POST["image-data"]; ?>" style="width:60%;"/>
         
-        <form id="PC-form">
+        <form id="PC-form" onfocus="">
             <label>From: </label>
             <input type="text" id="fromName" name="fromName" placeholder="John Doe" required>
 
