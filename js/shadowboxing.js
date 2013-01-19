@@ -81,27 +81,40 @@ function initializeDOMElements() {
     for (var i = 0; i < 4; i++) {
         var canvas = document.createElement('canvas');
         canvas.setAttribute('id', 'shadowCanvas' + i);
-        canvas.setAttribute('width', 320);
-        canvas.setAttribute('height', 240);
-        canvas.setAttribute('position', 'absolute');
+        //canvas.setAttribute('width', 320);
+        //canvas.setAttribute('height', 240);
+        canvas.setAttribute('class', 'shadowCanvas');
+        // canvas.setAttribute('position', 'absolute');
         switch(i) {
             case 0: 
-                canvas.style.float = 'left';
+                canvas.style.display = SHOW_SHADOW ? 'block' : 'none';
+                document.getElementById('top-left').appendChild(canvas);
+                shadowCanvases.push(canvas);
+                shadowContexts.push(canvas.getContext('2d')); 
                 break;
             case 1:
-                canvas.style.float = 'right';
+                canvas.style.display = SHOW_SHADOW ? 'block' : 'none';
+                document.getElementById('top-right').appendChild(canvas);
+                shadowCanvases.push(canvas);
+                shadowContexts.push(canvas.getContext('2d')); 
                 break;
             case 2:
-                canvas.style.float = 'left';
+                canvas.style.display = SHOW_SHADOW ? 'block' : 'none';
+                document.getElementById('bottom-left').appendChild(canvas);
+                shadowCanvases.push(canvas);
+                shadowContexts.push(canvas.getContext('2d')); 
                 break;
             case 3:
-                canvas.style.float = 'right';
+                canvas.style.display = SHOW_SHADOW ? 'block' : 'none';
+                document.getElementById('bottom-right').appendChild(canvas);
+                shadowCanvases.push(canvas);
+                shadowContexts.push(canvas.getContext('2d')); 
                 break;
         }
-        canvas.style.display = SHOW_SHADOW ? 'block' : 'none';
-        document.getElementById('capture').appendChild(canvas);
-        shadowCanvases.push(canvas);
-        shadowContexts.push(canvas.getContext('2d'));  
+        //canvas.style.display = SHOW_SHADOW ? 'block' : 'none';
+        //document.getElementById('capture').appendChild(canvas);
+        //shadowCanvases.push(canvas);
+        //shadowContexts.push(canvas.getContext('2d'));  
     };
     // shadowCanvas = document.createElement('canvas');
     // shadowCanvas.setAttribute('id', 'shadowCanvas');

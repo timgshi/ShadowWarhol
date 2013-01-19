@@ -1,0 +1,22 @@
+.shadowCanvas {
+	width: 100%;
+}
+#capture {
+	width: 100%;
+}
+#capture-table	{
+	width: 100%;
+}
+#top-row, #bottom-row {
+	width: 100%;
+	clear: both;
+}
+#top-left, #bottom-left {
+	width: 50%;
+	float: left;
+}
+#top-right, #bottom-right {
+	width: 50%;
+	float: right;
+}
+
