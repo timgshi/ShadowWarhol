@@ -13,30 +13,37 @@
 				box-shadow: 10px 10px 5px #888;
 			}
 			#image {
-				width: 60%;
+				width: 100%;
 			}
 			#image-div {
 			}
 			#right-div {
-				width:40%;
+
 				text-align: center;
-				float: right;
 				vertical-align: center;
 			}
 			#message {
 				vertical-align: center;
+			}
+			#name {
+				padding: 5px;
 			}
 		</style>
 	</head>
 
 	<body>
 		<div id="border">
-			<div id="image-div">
-				<img id="image" src="download.jpeg"></img>
-				<div id="right-div">
-					<div id="message">Inspire, Dream, WARHOL"</div>
-				</div>
-			</div>
+			<table id="image-div">
+				<tr>
+					<td style="width:60%"><img id="image" src="download.jpeg"></img></td>
+					<td style="width:40%">
+						<div id="right-div">
+							<div id="message">"Greetings from the Stanford D. School! Enjoy my Warhol Shadow"</div>
+							<div id="name">~Shilpa</div>
+						</div>
+					</td>
+				</tr>
+			</table>
 		</div>
 	</body>
 </html>
