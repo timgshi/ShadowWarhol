@@ -6,11 +6,13 @@
 	$message = "<html><p>";
 	$message .= $_POST['message'];
 	$message .= "</p>";
+	$message .= "<img src=\"";
+	$message .= $_POST['image-url'];
+	$message .= "\" width=\"640\" height=\"480\"/>";
 	$message .= "</html>";
 	$result = $postmark->to($_POST['toEmail'])
 		->subject("Test!")
 		->html_message($message)
-		->attachment('warhol.jpg', substr($_POST['image-data'], 23), 'application/jpeg')
 		->send();
 	
 	if($result === true)
