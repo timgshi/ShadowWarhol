@@ -32,18 +32,14 @@
 	</head>
 
 	<body>
-		<div id="border">
-			<table id="image-div">
-				<tr>
-					<td style="width:60%"><img id="image" src="<?php echo $_POST['image-url']; ?>"></img></td>
-					<td style="width:40%">
-						<div id="right-div">
-							<div id="message"><?php echo $_POST['message']; ?></div>
-							<div id="name"><?php echo $_POST['fromName']; ?></div>
-						</div>
-					</td>
-				</tr>
-			</table>
+		<div id="border" style="font-family: 'Over the Rainbow', cursive;width: 50%;">
+			<div id="image-div">
+				<img id="image" src="<?php echo $_POST['image-url']; ?>" style="width: 100%;"></img>
+			</div>			
+			<div id="msg-div" style="text-align: center;vertical-align: center;">
+				<div id="message" style="vertical-align: center;"><?php echo $_POST['message']; ?></div>
+				<div id="name" style="padding: 5px;"><?php echo $_POST['fromName']; ?></div>
+			</div>
 		</div>
 	</body>
 </html>
