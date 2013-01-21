@@ -34,6 +34,11 @@
 	<body>
 		<link href='http://fonts.googleapis.com/css?family=Over+the+Rainbow' rel='stylesheet' type='text/css'>
 		<div id="border" style="font-family: 'Over the Rainbow', cursive;width: 50%;">
+			<div id="header">
+				<div id="header-img-div" style="width:50%;margin:0 auto;">
+					<img id="header-img" src="dschool.jpg" style="width:100%;"></img>
+				</div>
+			</div>
 			<div id="image-div">
 				<img id="image" src="<?php echo $_POST['image-url']; ?>" style="width: 100%;"></img>
 			</div>			
