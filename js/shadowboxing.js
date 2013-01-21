@@ -28,7 +28,7 @@ var BACKGROUND_ALPHA = 0.05;
 // in the background subtraction. Change this radius to trade off noise for precision 
 var STACK_BLUR_RADIUS = 10; 
 
-var TRIGGER_THRESHOLD = 0.80;
+var TRIGGER_THRESHOLD = 0.75;
 
 var TRIGGER_TRIGGERED = false;
 
@@ -368,7 +368,8 @@ function getShadowData(canvasNum) {
         numPixels += 1;
     }
     if ((numForegroundPixels / numPixels) > TRIGGER_THRESHOLD && TRIGGER_TRIGGERED != true) {
-        CreateTimer("timer", 10);
+        TRIGGER_TRIGGERED = true;
+        CreateTimer("timer", 5);
     }
     
     return pixelData; 
