@@ -17,10 +17,13 @@
 	// $message = file_get_contents("postcard.php");
 	echo $message;
 	$result = $postmark->to($_POST['toEmail'])
-		->subject("Test!")
+		->subject("Hello from the d.school!")
 		->html_message($message)
 		->send();
 	
 	if($result === true)
-		echo "Message sent";
+		sleep(5);
+		echo '<script type="text/javascript">' . "\n"; 
+		echo 'window.location="http://bit.ly/ShadowWarhol";'; 
+		echo '</script>'; 
 ?>

@@ -28,9 +28,11 @@ var BACKGROUND_ALPHA = 0.05;
 // in the background subtraction. Change this radius to trade off noise for precision 
 var STACK_BLUR_RADIUS = 10; 
 
-var TRIGGER_THRESHOLD = 0.75;
+var TRIGGER_THRESHOLD = 0.50;
 
 var TRIGGER_TRIGGERED = false;
+
+var COUNTDOWN_LENGTH = 3;
 
 /*
  * Begin shadowboxing code
@@ -369,7 +371,7 @@ function getShadowData(canvasNum) {
     }
     if ((numForegroundPixels / numPixels) > TRIGGER_THRESHOLD && TRIGGER_TRIGGERED != true) {
         TRIGGER_TRIGGERED = true;
-        CreateTimer("timer", 5);
+        CreateTimer("timer", COUNTDOWN_LENGTH);
     }
     
     return pixelData; 
