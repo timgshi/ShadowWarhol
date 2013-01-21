@@ -30,6 +30,8 @@ var STACK_BLUR_RADIUS = 10;
 
 var TRIGGER_THRESHOLD = 0.80;
 
+var TRIGGER_TRIGGERED = false;
+
 /*
  * Begin shadowboxing code
  */
@@ -365,8 +367,7 @@ function getShadowData(canvasNum) {
         }        
         numPixels += 1;
     }
-
-    if ((numForegroundPixels / numPixels) > TRIGGER_THRESHOLD) {
+    if ((numForegroundPixels / numPixels) > TRIGGER_THRESHOLD && TRIGGER_TRIGGERED != true) {
         CreateTimer("timer", 10);
     }
     
@@ -399,7 +400,7 @@ function CreateTimer(TimerID, Time) {
 
 function Tick() {
         if (TotalSeconds <= 0) {
-                alert("Time's up!")
+                $('#take-photo').submit();
                 return;
         }
 
