@@ -367,7 +367,7 @@ function getShadowData(canvasNum) {
     }
 
     if ((numForegroundPixels / numPixels) > TRIGGER_THRESHOLD) {
-        // trigger();
+        CreateTimer("timer", 10);
     }
     
     return pixelData; 
