@@ -17,7 +17,17 @@
 }
 #top-right, #bottom-right {
 	width: 35%;
+	float: left;
+}
+#timer {
+	width:30%;
 	float: right;
-	padding-right: 30%;
+	text-align: center;
+	font-family: 'Wendy One', sans-serif;
+	font-size: 40px;
+	vertical-align: top;
+}
+#form-stuff {
+	text-align: center;
 }
 
