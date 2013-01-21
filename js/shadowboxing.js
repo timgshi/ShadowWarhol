@@ -28,6 +28,7 @@ var BACKGROUND_ALPHA = 0.05;
 // in the background subtraction. Change this radius to trade off noise for precision 
 var STACK_BLUR_RADIUS = 10; 
 
+var TRIGGER_THRESHOLD = 0.80;
 
 /*
  * Begin shadowboxing code
@@ -282,6 +283,9 @@ function renderShadow() {
 function getShadowData(canvasNum) {
     var pixelData = getCameraData();
 
+    var numForegroundPixels = 0;
+    var numPixels = 0;
+
     // Each pixel gets four array indices: [r, g, b, alpha]
     for (var i=0; i<pixelData.data.length; i=i+4) {
         var rCurrent = pixelData.data[i];
@@ -346,6 +350,8 @@ function getShadowData(canvasNum) {
             pixelData.data[i] = foregroundColor[0];
             pixelData.data[i+1] = foregroundColor[1];
             pixelData.data[i+2] = foregroundColor[2];
+
+            numForegroundPixels += 1;
         } else {
             // background
             
@@ -357,6 +363,11 @@ function getShadowData(canvasNum) {
             pixelData.data[i+1] = backgroundColor[1];
             pixelData.data[i+2] = backgroundColor[2];
         }        
+        numPixels += 1;
+    }
+
+    if ((numForegroundPixels / numPixels) > TRIGGER_THRESHOLD) {
+        // trigger();
     }
     
     return pixelData; 
