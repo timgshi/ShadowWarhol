@@ -80,8 +80,8 @@
            if (strlen($response))
            {
               $info = json_decode($response);
-            return $info;
-        }
+              return $info;
+           }
         }
         $return = imgur_upload(substr($_POST['image-data'], 23));
         ?>
